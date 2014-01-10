@@ -17,7 +17,7 @@ var test = (function(win) {
 
 	// If body has hover effects enabled, and appears to support touch, remove hover effects and start listening for pointer interactions
 	function init(e) {
-		if (true || classExists() && (('ontouchstart' in win) || (win.DocumentTouch && win.doc instanceof DocumentTouch))) {
+		if (classExists() && (('ontouchstart' in win) || (win.DocumentTouch && win.doc instanceof DocumentTouch))) {
 			doc.body.className = doc.body.className.replace(className, '');
 			if (e) listener('remove', 'DOMContentLoaded', init);
 			eventmap.forEach(function(item) {

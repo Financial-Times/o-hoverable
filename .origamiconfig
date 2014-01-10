@@ -1,0 +1,7 @@
+{
+  "description": "Common class and supporting JavaScript for enabling and disabling hover effects",
+  "origamiType": "module",
+  "origamiVersion": 0.1,
+  "support": "andrew.betts@ft.com",
+  "supportStatus": "not implemented"
+}

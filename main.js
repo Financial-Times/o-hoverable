@@ -70,7 +70,7 @@ var test = (function(win) {
 		return classList.contains(className);
 	}
 
-	if (doc.documentElement) {
+	if (win.document.documentElement) {
 		init();
 	} else {
 		listener('add', 'DOMContentLoaded', init);

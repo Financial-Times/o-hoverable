@@ -13,12 +13,13 @@ var test = (function(win) {
 		['mspointerhover', contactMove]
 	];
 	var className = 'o-hoverable-on';
-	var doc = win.document;
+	var classList;
 
 	// If body has hover effects enabled, and appears to support touch, remove hover effects and start listening for pointer interactions
 	function init(e) {
+		classList = win.document.documentElement.classList;
 		if (classExists() && (('ontouchstart' in win) || (win.DocumentTouch && win.doc instanceof DocumentTouch))) {
-			doc.body.className = doc.body.className.replace(className, '');
+			classList.remove(className);
 			if (e) listener('remove', 'DOMContentLoaded', init);
 			eventmap.forEach(function(item) {
 				listener('add', item[0], item[1]);
@@ -54,7 +55,7 @@ var test = (function(win) {
 
 		// MSPointerHover categorically means a contactless interaction
 		if (contactlessMoves > 1 || event.type.toLowerCase() === 'mspointerhover') {
-			doc.body.className += ' '+className;
+			classList.add(className);
 			eventmap.forEach(function(item) {
 				listener('remove', item[0], item[1]);
 			});
@@ -66,11 +67,10 @@ var test = (function(win) {
 	}
 
 	function classExists() {
-		var classPattern = new RegExp("^(.* )?"+className+"( .*)?$");
-		return classPattern.test(doc.body.className);
+		return classList.contains(className);
 	}
 
-	if (doc.body) {
+	if (win.document.documentElement) {
 		init();
 	} else {
 		listener('add', 'DOMContentLoaded', init);

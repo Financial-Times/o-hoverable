@@ -1,10 +1,17 @@
 {
   "description": "Common class and supporting JavaScript for enabling and disabling hover effects",
   "origamiType": "module",
-  "origamiVersion": 0.1,
-  "support": "andrew.betts@ft.com",
-  "supportStatus": "not implemented",
+  "origamiVersion": 1,
+  "support": "https://github.com/Financial-Times/o-hoverable/issues",
+  "supportStatus": "experimental",
   "browserFeatures": {
     "required": ["classlist"]
-  }
+  },
+  "demos": [
+        {
+            "path": "/demos/demo.html",
+            "expanded": true,
+            "description": ""
+        }
+    ]
 }

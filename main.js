@@ -1,5 +1,4 @@
-
-var test = (function(win) {
+function Hoverable(el) {
 
 	var hasContact = false, contactlessMoves = 0, lastClientX, lastClientY;
 	var eventmap = [
@@ -17,10 +16,9 @@ var test = (function(win) {
 
 	// If body has hover effects enabled, and appears to support touch, remove hover effects and start listening for pointer interactions
 	function init(e) {
-		classList = win.document.documentElement.classList;
-		if (classExists() && (('ontouchstart' in win) || (win.DocumentTouch && win.doc instanceof DocumentTouch))) {
+		classList = el.document.documentElement.classList;
+		if (classExists() && (('ontouchstart' in el) || (el.DocumentTouch && el.doc instanceof DocumentTouch))) {
 			classList.remove(className);
-			if (e) listener('remove', 'DOMContentLoaded', init);
 			eventmap.forEach(function(item) {
 				listener('add', item[0], item[1]);
 			});
@@ -63,18 +61,14 @@ var test = (function(win) {
 	}
 
 	function listener(type, event, fn) {
-		win[type+'EventListener'](event, fn, false);
+		el[type+'EventListener'](event, fn, false);
 	}
 
 	function classExists() {
 		return classList.contains(className);
 	}
 
-	if (win.document.documentElement) {
-		init();
-	} else {
-		listener('add', 'DOMContentLoaded', init);
-	}
+	init();
 
 	return {
 		setClassName: function(str) {
@@ -82,4 +76,20 @@ var test = (function(win) {
 		},
 		isHoverEnabled: classExists
 	}
-}(window));
+};
+
+Hoverable.init = function(el) {
+    if (!el) {
+        el = window; 
+    } else if (!(el instanceof HTMLElement)) {
+        el = document.querySelector(el);
+    }
+    return new Hoverable(el);
+};
+
+var constructAll = function() {
+    Hoverable.init();
+    document.removeEventListener('o.DOMContentLoaded', constructAll);
+};
+
+document.addEventListener('o.DOMContentLoaded', constructAll);

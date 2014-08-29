@@ -1,4 +1,6 @@
-function Hoverable(el) {
+'use strict';
+
+function Hoverable(win) {
 
 	var hasContact = false, contactlessMoves = 0, lastClientX, lastClientY;
 	var eventmap = [
@@ -14,16 +16,15 @@ function Hoverable(el) {
 	var className = 'o-hoverable-on';
 	var classList;
 
-	// If body has hover effects enabled, and appears to support touch, remove hover effects and start listening for pointer interactions
 	function init() {
-		if (!el) {
-	        el = window; 
-	    } else if (!(el instanceof HTMLElement)) {
-	        el = document.querySelector(el);
-	    }
-		el.setAttribute('data-o-hoverable--js');
-		classList = el.document.documentElement.classList;
-		if (classExists() && (('ontouchstart' in el) || (el.DocumentTouch && el.doc instanceof DocumentTouch))) {
+		win.document.body.setAttribute('data-o-hoverable--js', '');
+		touchSupport();
+	}
+
+	// If body has hover effects enabled, and appears to support touch, remove hover effects and start listening for pointer interactions
+	function touchSupport() {
+		classList = win.document.body.classList;
+		if (classExists() && (('ontouchstart' in win) || (win.DocumentTouch && win.doc instanceof DocumentTouch))) {
 			classList.remove(className);
 			eventmap.forEach(function(item) {
 				listener('add', item[0], item[1]);
@@ -67,7 +68,7 @@ function Hoverable(el) {
 	}
 
 	function listener(type, event, fn) {
-		el[type+'EventListener'](event, fn, false);
+		win[type+'EventListener'](event, fn, false);
 	}
 
 	function classExists() {
@@ -75,7 +76,10 @@ function Hoverable(el) {
 	}
 
 	function destroy() {
-
+		win.removeAttribute('data-o-hoverable--js');
+		eventmap.forEach(function(item) {
+			listener('remove', item[0], item[1]);
+		});
 	}
 
 	init();
@@ -83,26 +87,22 @@ function Hoverable(el) {
 	return {
 		setClassName: function(str) {
 			className = str;
+			touchSupport();
 		},
 		destroy: destroy,
 		isHoverEnabled: classExists
 	}
 };
 
-Hoverable.init = function(el) {
-    if (!el) {
-        el = window; 
-    } else if (!(el instanceof HTMLElement)) {
-        el = document.querySelector(el);
-    }
-    if (!el.hasAttribute('data-o-hoverable--js')) {
-    	return new Hoverable(el);
+Hoverable.init = function() {
+    if (!window.document.body.hasAttribute('data-o-hoverable--js')) {
+    	document.removeEventListener('o.DOMContentLoaded', Hoverable.init);
+    	return new Hoverable(window);
     }
 };
 
-var constructAll = function() {
-    Hoverable.init();
-    document.removeEventListener('o.DOMContentLoaded', constructAll);
-};
+document.addEventListener('o.DOMContentLoaded', Hoverable.init);
 
-document.addEventListener('o.DOMContentLoaded', constructAll);
+module.exports = {
+	init: Hoverable.init
+};

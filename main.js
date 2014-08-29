@@ -1,5 +1,6 @@
+'use strict';
 
-var test = (function(win) {
+function Hoverable(win) {
 
 	var hasContact = false, contactlessMoves = 0, lastClientX, lastClientY;
 	var eventmap = [
@@ -15,12 +16,16 @@ var test = (function(win) {
 	var className = 'o-hoverable-on';
 	var classList;
 
+	function init() {
+		win.document.body.setAttribute('data-o-hoverable--js', '');
+		touchSupport();
+	}
+
 	// If body has hover effects enabled, and appears to support touch, remove hover effects and start listening for pointer interactions
-	function init(e) {
-		classList = win.document.documentElement.classList;
+	function touchSupport() {
+		classList = win.document.body.classList;
 		if (classExists() && (('ontouchstart' in win) || (win.DocumentTouch && win.doc instanceof DocumentTouch))) {
 			classList.remove(className);
-			if (e) listener('remove', 'DOMContentLoaded', init);
 			eventmap.forEach(function(item) {
 				listener('add', item[0], item[1]);
 			});
@@ -70,16 +75,34 @@ var test = (function(win) {
 		return classList.contains(className);
 	}
 
-	if (win.document.documentElement) {
-		init();
-	} else {
-		listener('add', 'DOMContentLoaded', init);
+	function destroy() {
+		win.document.body.removeAttribute('data-o-hoverable--js');
+		eventmap.forEach(function(item) {
+			listener('remove', item[0], item[1]);
+		});
 	}
+
+	init();
 
 	return {
 		setClassName: function(str) {
 			className = str;
+			touchSupport();
 		},
+		destroy: destroy,
 		isHoverEnabled: classExists
 	}
-}(window));
+};
+
+Hoverable.init = function() {
+    if (!window.document.body.hasAttribute('data-o-hoverable--js')) {
+    	document.removeEventListener('o.DOMContentLoaded', Hoverable.init);
+    	return new Hoverable(window);
+    }
+};
+
+document.addEventListener('o.DOMContentLoaded', Hoverable.init);
+
+module.exports = {
+	init: Hoverable.init
+};

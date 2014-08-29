@@ -14,7 +14,9 @@ When you first add Origami CSS to a product, no hover effects will be triggered,
 
 This will unconditionally add hover effects, so hover now acts as you would expect from a web page that has defined `:hover` pseudoclasses.
 
-To activate smart hover switching, add the class and also include this module's JavaScript in your bundle.  This will intelligently disable hovering on devices that support touch, and will re-enable it as soon as a non-touch hover event (ie, a mouse) is detected.
+To activate smart hover switching, add the class and also include this module's JavaScript in your bundle. You can then instantiate by running the `oHoverable#init()` function or by dispatching the `o.DOMContentLoaded` event.
+
+This will intelligently disable hovering on devices that support touch, and will re-enable it as soon as a non-touch hover event (ie, a mouse) is detected.
 
 ### Configuring the class
 
@@ -32,7 +34,7 @@ Make sure you do both of these, so that any JavaScript that
 
 Component developers *must* prefix any `:hover` pseudoclass with the `$o-hoverable-if-hover-enabled` variable, to allow your hover effect to be controlled by this module:
 
-    $o-hoverable-if-hover-enabled .o-mymodule-button:hover { background: red };
+    #{$o-hoverable-if-hover-enabled} .o-mymodule-button:hover { background: red };
 
 In JavaScript, bind hover events as normal, but when they fire, check hover status, and don't take any action if hover is not enabled.
 

@@ -1,0 +1,15 @@
+@import "../../main";
+
+div {
+	width: 400px;
+	height: 200px;
+	padding: 50px;
+	text-align: center;
+	background: #ffbbbb;
+}
+#{$o-hoverable-if-hover-enabled} div {
+	background: #bbffbb;
+}
+#{$o-hoverable-if-hover-enabled} div:hover {
+	background: #77ff77;
+}

@@ -15,7 +15,13 @@ function Hoverable(el) {
 	var classList;
 
 	// If body has hover effects enabled, and appears to support touch, remove hover effects and start listening for pointer interactions
-	function init(e) {
+	function init() {
+		if (!el) {
+	        el = window; 
+	    } else if (!(el instanceof HTMLElement)) {
+	        el = document.querySelector(el);
+	    }
+		el.setAttribute('data-o-hoverable--js');
 		classList = el.document.documentElement.classList;
 		if (classExists() && (('ontouchstart' in el) || (el.DocumentTouch && el.doc instanceof DocumentTouch))) {
 			classList.remove(className);
@@ -68,12 +74,17 @@ function Hoverable(el) {
 		return classList.contains(className);
 	}
 
+	function destroy() {
+
+	}
+
 	init();
 
 	return {
 		setClassName: function(str) {
 			className = str;
 		},
+		destroy: destroy,
 		isHoverEnabled: classExists
 	}
 };
@@ -84,7 +95,9 @@ Hoverable.init = function(el) {
     } else if (!(el instanceof HTMLElement)) {
         el = document.querySelector(el);
     }
-    return new Hoverable(el);
+    if (!el.hasAttribute('data-o-hoverable--js')) {
+    	return new Hoverable(el);
+    }
 };
 
 var constructAll = function() {

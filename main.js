@@ -76,7 +76,7 @@ function Hoverable(win) {
 	}
 
 	function destroy() {
-		win.removeAttribute('data-o-hoverable--js');
+		win.document.body.removeAttribute('data-o-hoverable--js');
 		eventmap.forEach(function(item) {
 			listener('remove', item[0], item[1]);
 		});

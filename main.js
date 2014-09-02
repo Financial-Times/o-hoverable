@@ -1,6 +1,6 @@
 'use strict';
 
-function Hoverable(win) {
+function Hoverable() {
 
 	var hasContact = false, contactlessMoves = 0, lastClientX, lastClientY;
 	var eventmap = [
@@ -15,6 +15,7 @@ function Hoverable(win) {
 	];
 	var className = 'o-hoverable-on';
 	var classList;
+	var win = window
 
 	function init() {
 		win.document.body.setAttribute('data-o-hoverable--js', '');
@@ -97,7 +98,7 @@ function Hoverable(win) {
 Hoverable.init = function() {
     if (!window.document.body.hasAttribute('data-o-hoverable--js')) {
     	document.removeEventListener('o.DOMContentLoaded', Hoverable.init);
-    	return new Hoverable(window);
+    	return new Hoverable();
     }
 };
 

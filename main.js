@@ -1,3 +1,4 @@
+/* globals DocumentTouch */
 'use strict';
 
 function Hoverable() {
@@ -15,7 +16,7 @@ function Hoverable() {
 	];
 	var className = 'o-hoverable-on';
 	var classList;
-	var win = window
+	var win = window;
 
 	function init() {
 		win.document.body.setAttribute('data-o-hoverable--js', '');
@@ -92,14 +93,14 @@ function Hoverable() {
 		},
 		destroy: destroy,
 		isHoverEnabled: classExists
-	}
-};
+	};
+}
 
 Hoverable.init = function() {
-    if (!window.document.body.hasAttribute('data-o-hoverable--js')) {
-    	document.removeEventListener('o.DOMContentLoaded', Hoverable.init);
-    	return new Hoverable();
-    }
+	if (!window.document.body.hasAttribute('data-o-hoverable--js')) {
+		document.removeEventListener('o.DOMContentLoaded', Hoverable.init);
+		return new Hoverable();
+	}
 };
 
 document.addEventListener('o.DOMContentLoaded', Hoverable.init);

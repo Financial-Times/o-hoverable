@@ -1,4 +1,4 @@
-# Origami hover effects
+# Origami hover effects [![Build Status](https://travis-ci.org/Financial-Times/o-hoverable.png?branch=master)](https://travis-ci.org/Financial-Times/o-hoverable)
 
 It's common for interactive elements on web pages to have hover effects, either via JavaScript `mouse*` events, or via CSS `:hover` pseudoclasses.  However, while some users will be interacting with your web page using a mouse, others may be using a touch screen.  Since touch screens typically don't have a 'hover' capability, hover effects are usually undesirable.
 

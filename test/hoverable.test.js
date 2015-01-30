@@ -1,4 +1,4 @@
-/*global describe, beforeEach, afterEach, it, expect*/
+/*global describe, afterEach, it*/
 'use strict';
 
 var expect = require('expect.js');

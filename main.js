@@ -105,6 +105,4 @@ Hoverable.init = function() {
 
 document.addEventListener('o.DOMContentLoaded', Hoverable.init);
 
-module.exports = {
-	init: Hoverable.init
-};
+module.exports = Hoverable;

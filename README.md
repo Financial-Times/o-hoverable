@@ -11,7 +11,7 @@ This module provides for all Origami hover effects to be turned on and off, and 
 When you first add Origami CSS to a product, no hover effects will be triggered, and Origami components on your page will never react to hover.  To activate hover effects, add `o-hoverable-on` to the `<body>` tag:
 
 ```html
-<body class='o-hoverable-on'>
+<body class="o-hoverable-on">
 ```
 
 This will unconditionally add hover effects, so hover now acts as you would expect from a web page that has defined `:hover` pseudoclasses.
@@ -28,7 +28,7 @@ If you want to change the class used to trigger hover effects, you can do so by 
 $o-hoverable-if-hover-enabled: '.do-that-hover-thang';
 ```
 
-And calling `setClassname` on the JavaScript module:
+And calling `setClassName` on the JavaScript module:
 
 ```javascript
 require('o-hoverable').setClassName('do-that-hover-thang')
@@ -40,7 +40,7 @@ Make sure you do both of these, so that any JavaScript that
 Component developers *must* prefix any `:hover` pseudoclass with the `$o-hoverable-if-hover-enabled` variable, to allow your hover effect to be controlled by this module:
 
 ```scss
-#{$o-hoverable-if-hover-enabled} .o-mymodule-button:hover { background: red };
+#{$o-hoverable-if-hover-enabled} .o-mymodule-button:hover { background: red; };
 ```
 
 In JavaScript, bind hover events as normal, but when they fire, check hover status, and don't take any action if hover is not enabled.

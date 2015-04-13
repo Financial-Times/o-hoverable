@@ -19,15 +19,19 @@ function Hoverable() {
 	var win = window;
 
 	function init() {
-		win.document.body.setAttribute('data-o-hoverable--js', '');
+		win.document.documentElement.setAttribute('data-o-hoverable--js', '');
 		touchSupport();
+	}
+
+	function updateClasses(action) {
+		document.body.classList[action](className); // deprecated
+		document.documentElement.classList[action](className);
 	}
 
 	// If body has hover effects enabled, and appears to support touch, remove hover effects and start listening for pointer interactions
 	function touchSupport() {
-		classList = win.document.body.classList;
 		if (classExists() && (('ontouchstart' in win) || (win.DocumentTouch && win.doc instanceof DocumentTouch))) {
-			classList.remove(className);
+			updateClasses('remove');
 			eventmap.forEach(function(item) {
 				listener('add', item[0], item[1]);
 			});
@@ -62,7 +66,7 @@ function Hoverable() {
 
 		// MSPointerHover categorically means a contactless interaction
 		if (contactlessMoves > 1 || event.type.toLowerCase() === 'mspointerhover') {
-			classList.add(className);
+			updateClasses('add');
 			eventmap.forEach(function(item) {
 				listener('remove', item[0], item[1]);
 			});
@@ -70,7 +74,7 @@ function Hoverable() {
 	}
 
 	function listener(type, event, fn) {
-		win[type+'EventListener'](event, fn, false);
+		win[type + 'EventListener'](event, fn, false);
 	}
 
 	function classExists() {
@@ -78,7 +82,7 @@ function Hoverable() {
 	}
 
 	function destroy() {
-		win.document.body.removeAttribute('data-o-hoverable--js');
+		win.document.documentElement.removeAttribute('data-o-hoverable--js');
 		eventmap.forEach(function(item) {
 			listener('remove', item[0], item[1]);
 		});
@@ -97,7 +101,7 @@ function Hoverable() {
 }
 
 Hoverable.init = function() {
-	if (!window.document.body.hasAttribute('data-o-hoverable--js')) {
+	if (!window.document.documentElement.hasAttribute('data-o-hoverable--js')) {
 		document.removeEventListener('o.DOMContentLoaded', Hoverable.init);
 		return new Hoverable();
 	}

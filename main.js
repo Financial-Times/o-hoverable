@@ -15,19 +15,21 @@ function Hoverable() {
 		['mspointerhover', contactMove]
 	];
 	var className = 'o-hoverable-on';
-	var classList;
-	var win = window;
 
 	function init() {
-		win.document.body.setAttribute('data-o-hoverable--js', '');
+		document.documentElement.setAttribute('data-o-hoverable--js', '');
 		touchSupport();
+	}
+
+	function updateClasses(action) {
+		document.body.classList[action](className); // deprecated
+		document.documentElement.classList[action](className);
 	}
 
 	// If body has hover effects enabled, and appears to support touch, remove hover effects and start listening for pointer interactions
 	function touchSupport() {
-		classList = win.document.body.classList;
-		if (classExists() && (('ontouchstart' in win) || (win.DocumentTouch && win.doc instanceof DocumentTouch))) {
-			classList.remove(className);
+		if (classExists() && (('ontouchstart' in window) || (DocumentTouch && document instanceof DocumentTouch))) {
+			updateClasses('remove');
 			eventmap.forEach(function(item) {
 				listener('add', item[0], item[1]);
 			});
@@ -62,7 +64,7 @@ function Hoverable() {
 
 		// MSPointerHover categorically means a contactless interaction
 		if (contactlessMoves > 1 || event.type.toLowerCase() === 'mspointerhover') {
-			classList.add(className);
+			updateClasses('add');
 			eventmap.forEach(function(item) {
 				listener('remove', item[0], item[1]);
 			});
@@ -70,15 +72,15 @@ function Hoverable() {
 	}
 
 	function listener(type, event, fn) {
-		win[type+'EventListener'](event, fn, false);
+		window[type + 'EventListener'](event, fn, false);
 	}
 
 	function classExists() {
-		return classList.contains(className);
+		return document.documentElement.classList.contains(className) || document.body.classList.contains(className);
 	}
 
 	function destroy() {
-		win.document.body.removeAttribute('data-o-hoverable--js');
+		document.documentElement.removeAttribute('data-o-hoverable--js');
 		eventmap.forEach(function(item) {
 			listener('remove', item[0], item[1]);
 		});
@@ -97,7 +99,7 @@ function Hoverable() {
 }
 
 Hoverable.init = function() {
-	if (!window.document.body.hasAttribute('data-o-hoverable--js')) {
+	if (!document.documentElement.hasAttribute('data-o-hoverable--js')) {
 		document.removeEventListener('o.DOMContentLoaded', Hoverable.init);
 		return new Hoverable();
 	}

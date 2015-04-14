@@ -8,7 +8,7 @@ This module provides for all Origami hover effects to be turned on and off, and 
 
 ## Using in a product
 
-When you first add Origami CSS to a product, no hover effects will be triggered, and Origami components on your page will never react to hover.  To activate hover effects, add `o-hoverable-on` to the `<body>` tag:
+When you first add Origami CSS to a product, no hover effects will be triggered, and Origami components on your page will never react to hover.  To activate hover effects, add `o-hoverable-on` to the `<html>` tag:
 
 ```html
 <body class="o-hoverable-on">

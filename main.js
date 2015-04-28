@@ -19,22 +19,19 @@ function Hoverable() {
 	];
 	var className = 'o-hoverable-on';
 	var htmlClassList;
-	var bodyClassList; // Legacy
 
 	function init() {
 		window.document.documentElement.setAttribute('data-o-hoverable--js', '');
-		window.document.body.setAttribute('data-o-hoverable--js', '');
 		touchSupport();
 	}
 
-	// If body has hover effects enabled, and appears to support touch, remove hover effects and start listening for pointer interactions
+	// If HTML has hover effects enabled, and device appears to support touch
+	// remove hover effects and start listening for pointer interactions
 	function touchSupport() {
 		htmlClassList = window.document.documentElement.classList;
-		bodyClassList = window.document.body.classList;
 
 		if (classExists() && (('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch)) {
 			htmlClassList.remove(className);
-			bodyClassList.remove(className);
 
 			eventmap.forEach(function(item) {
 				listener('add', item[0], item[1]);
@@ -71,7 +68,6 @@ function Hoverable() {
 		// MSPointerHover categorically means a contactless interaction
 		if (contactlessMoves > 1 || event.type.toLowerCase() === 'mspointerhover') {
 			htmlClassList.add(className);
-			bodyClassList.add(className);
 
 			eventmap.forEach(function(item) {
 				listener('remove', item[0], item[1]);
@@ -84,12 +80,11 @@ function Hoverable() {
 	}
 
 	function classExists() {
-		return htmlClassList.contains(className) || bodyClassList.contains(className);
+		return htmlClassList.contains(className);
 	}
 
 	function destroy() {
 		window.document.documentElement.removeAttribute('data-o-hoverable--js');
-		window.document.body.removeAttribute('data-o-hoverable--js');
 
 		eventmap.forEach(function(item) {
 			listener('remove', item[0], item[1]);
@@ -109,7 +104,7 @@ function Hoverable() {
 }
 
 Hoverable.init = function() {
-	if (!window.document.documentElement.hasAttribute('data-o-hoverable--js') || !window.document.body.hasAttribute('data-o-hoverable--js')) {
+	if (!window.document.documentElement.hasAttribute('data-o-hoverable--js')) {
 		document.removeEventListener('o.DOMContentLoaded', Hoverable.init);
 		return new Hoverable();
 	}

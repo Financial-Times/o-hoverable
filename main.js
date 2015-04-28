@@ -32,7 +32,7 @@ function Hoverable() {
 		htmlClassList = window.document.documentElement.classList;
 		bodyClassList = window.document.body.classList;
 
-		if (classExists() && (('ontouchstart' in window) || (DocumentTouch && doc instanceof DocumentTouch))) {
+		if (classExists() && (('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch)) {
 			htmlClassList.remove(className);
 			bodyClassList.remove(className);
 

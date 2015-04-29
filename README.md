@@ -29,7 +29,7 @@ Component developers *must* prefix `:hover` states with `$o-hoverable-if-hover-e
 @import 'o-hoverable/main';
 
 #{$o-hoverable-if-hover-enabled} .o-mymodule-button:hover {
-	// Paint it black, if hover is enabled
+	// Paint it black when hover is supported
 	background: black;
 }
 ```
@@ -79,12 +79,13 @@ $o-hoverable-if-hover-enabled: '';
 @import 'o-hoverable/main';
 
 #{$o-hoverable-if-hover-enabled} .o-mymodule-button:hover {
-	// Paint it black is hover is supported
+	// Paint it black
 	background: black;
 }
 ```
 
 Compiles to:
+
 ```scss
 .o-mymodule-button:hover {
 	background: black;

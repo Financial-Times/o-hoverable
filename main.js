@@ -1,13 +1,12 @@
 /* globals DocumentTouch */
-'use strict';
 
 function Hoverable() {
 
-	var hasContact = false;
-	var contactlessMoves = 0;
-	var lastClientX;
-	var lastClientY;
-	var eventmap = [
+	let hasContact = false;
+	let contactlessMoves = 0;
+	let lastClientX;
+	let lastClientY;
+	const eventmap = [
 		['touchstart', contactStart],
 		['mousedown', contactStart],
 		['mspointerdown', contactStart],
@@ -17,8 +16,8 @@ function Hoverable() {
 		['mousemove', contactMove],
 		['mspointerhover', contactMove]
 	];
-	var className = 'o-hoverable-on';
-	var htmlClassList;
+	let className = 'o-hoverable-on';
+	let htmlClassList;
 
 	function init() {
 		window.document.documentElement.setAttribute('data-o-hoverable--js', '');
@@ -39,12 +38,12 @@ function Hoverable() {
 		}
 	}
 
-	function contactStart(event) {
+	function contactStart() {
 		hasContact = true;
 		contactlessMoves = 0;
 	}
 
-	function contactEnd(event) {
+	function contactEnd() {
 		hasContact = false;
 	}
 

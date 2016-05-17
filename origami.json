@@ -7,9 +7,18 @@
 	"browserFeatures": {
 		"required": ["classlist"]
 	},
+	"ci": {
+		"circle": "https://circleci.com/api/v1/project/Financial-Times/o-hoverable"
+	},
+	"demosDefaults": {
+		"sass": "demos/src/demo.scss",
+		"js": "demos/src/demo.js",
+		"bodyClasses": "o-hoverable-on"
+	},
 	"demos": [
 		{
-			"path": "/demos/demo.html",
+			"name": "demo",
+			"template": "/demos/src/demo.mustache",
 			"expanded": true,
 			"description": ""
 		}

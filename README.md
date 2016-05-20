@@ -1,4 +1,4 @@
-# Origami hover effects [![Build Status](https://travis-ci.org/Financial-Times/o-hoverable.png?branch=master)](https://travis-ci.org/Financial-Times/o-hoverable)
+# Origami hover effects [![Build Status](https://circleci.com/gh/Financial-Times/o-hoverable.png?style=shield&circle-token=b0af656f0c61d4711aaf95feff0fda15e76cf32e)](https://circleci.com/gh/Financial-Times/o-hoverable)
 
 Helper to activate hover states only on devices that support them, preventing unintended hover effects from happening on touch devices.
 

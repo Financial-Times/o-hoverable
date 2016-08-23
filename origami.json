@@ -14,7 +14,7 @@
 	"demosDefaults": {
 		"sass": "demos/src/demo.scss",
 		"js": "demos/src/demo.js",
-		"bodyClasses": "o-hoverable-on"
+		"documentClasses": "o-hoverable-on"
 	},
 	"demos": [
 		{

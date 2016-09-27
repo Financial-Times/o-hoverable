@@ -7,9 +7,16 @@ div {
 	text-align: center;
 	background: #ffbbbb;
 }
-#{$o-hoverable-if-hover-enabled} div {
+#{$o-hoverable-if-hover-enabled} div.hover-on {
 	background: #bbffbb;
 }
-#{$o-hoverable-if-hover-enabled} div:hover {
+#{$o-hoverable-if-hover-enabled} div.hover-on:hover {
 	background: #77ff77;
+}
+
+div .hover-off {
+	background: #ef2849;
+}
+div .hover-off:hover {
+	background: #d64f67;
 }

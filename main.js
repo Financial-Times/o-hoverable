@@ -103,12 +103,14 @@ function Hoverable() {
 }
 
 Hoverable.init = function() {
+	console.log('hi');
 	if (!window.document.documentElement.hasAttribute('data-o-hoverable--js')) {
+		console.log('cond');
 		document.removeEventListener('o.DOMContentLoaded', Hoverable.init);
 		return new Hoverable();
 	}
 };
 
-document.addEventListener('o.DOMContentLoaded', Hoverable.init);
+document.addEventListener('o.DOMContentLoaded', () => Hoverable.init() );
 
 module.exports = Hoverable;

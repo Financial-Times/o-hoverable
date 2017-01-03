@@ -6,6 +6,12 @@ import * as fixtures from './helpers/fixtures';
 const Hoverable = require('./../main.js');
 
 describe("o-hoverable init", () => {
+
+	afterEach(function() {
+		const testHoverable = new Hoverable();
+		testHoverable.destroy();
+	});
+
 	it('is defined', () => {
 		proclaim.isFunction(Hoverable);
 	});
@@ -15,11 +21,11 @@ describe("o-hoverable init", () => {
 	});
 
 	it("should autoinitialize", (done) => {
-		sinon.spy(Hoverable, 'init');
+		const autoInitSpy = sinon.spy(Hoverable, 'init');
 		document.dispatchEvent(new CustomEvent('o.DOMContentLoaded'));
 		setTimeout(() => {
-			proclaim.isTrue(Hoverable.init.called);
-			Hoverable.init.restore();
+			proclaim.isTrue(autoInitSpy.called);
+			autoInitSpy.restore();
 			done();
 		}, 100);
 	});

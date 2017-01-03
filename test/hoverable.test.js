@@ -1,7 +1,6 @@
 /*global describe, afterEach, it*/
 
-const expect = require('expect.js');
-
+import proclaim from 'proclaim';
 const Hoverable = require('./../main.js');
 
 describe('o-hoverable', function() {
@@ -13,38 +12,38 @@ describe('o-hoverable', function() {
 	});
 
 	it('should initialise the module', function() {
-		expect(window.document.documentElement.hasAttribute('data-o-hoverable--js')).to.be(false);
+		proclaim.isFalse(window.document.documentElement.hasAttribute('data-o-hoverable--js'));
 		testHoverable = new Hoverable();
-		expect(window.document.documentElement.hasAttribute('data-o-hoverable--js')).to.be(true);
+		proclaim.isTrue(window.document.documentElement.hasAttribute('data-o-hoverable--js'));
 	});
 
 	it('should destroy the module', function() {
-		expect(window.document.documentElement.hasAttribute('data-o-hoverable--js')).to.be(false);
+		proclaim.isFalse(window.document.documentElement.hasAttribute('data-o-hoverable--js'));
 		testHoverable = new Hoverable();
-		expect(window.document.documentElement.hasAttribute('data-o-hoverable--js')).to.be(true);
+		proclaim.isTrue(window.document.documentElement.hasAttribute('data-o-hoverable--js'));
 		testHoverable.destroy();
-		expect(window.document.documentElement.hasAttribute('data-o-hoverable--js')).to.be(false);
+		proclaim.isFalse(window.document.documentElement.hasAttribute('data-o-hoverable--js'));
 	});
 
 	it('should initialise the module by emitting the o.DOMContentLoaded event', function() {
-		expect(window.document.documentElement.hasAttribute('data-o-hoverable--js')).to.be(false);
+		proclaim.isFalse(window.document.documentElement.hasAttribute('data-o-hoverable--js'));
 		document.dispatchEvent(new CustomEvent('o.DOMContentLoaded'));
-		expect(window.document.documentElement.hasAttribute('data-o-hoverable--js')).to.be(true);
+		proclaim.isTrue(window.document.documentElement.hasAttribute('data-o-hoverable--js'));
 	});
 
 	it('should check if class o-hoverable-on is set on <html>', function() {
 		testHoverable = new Hoverable();
-		expect(testHoverable.isHoverEnabled()).to.be(false);
+		proclaim.isFalse(testHoverable.isHoverEnabled());
 		window.document.documentElement.classList.add('o-hoverable-on');
-		expect(testHoverable.isHoverEnabled()).to.be(true);
+		proclaim.isTrue(testHoverable.isHoverEnabled());
 	});
 
 	it('should set custom class on <html>', function() {
 		testHoverable = new Hoverable();
 		testHoverable.setClassName('hover-test');
-		expect(testHoverable.isHoverEnabled()).to.be(false);
+		proclaim.isFalse(testHoverable.isHoverEnabled());
 		window.document.documentElement.classList.add('hover-test');
-		expect(testHoverable.isHoverEnabled()).to.be(true);
+		proclaim.isTrue(testHoverable.isHoverEnabled());
 	});
 
 });

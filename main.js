@@ -109,6 +109,6 @@ Hoverable.init = function() {
 	}
 };
 
-document.addEventListener('o.DOMContentLoaded', Hoverable.init);
+document.addEventListener('o.DOMContentLoaded', () => Hoverable.init() );
 
 module.exports = Hoverable;

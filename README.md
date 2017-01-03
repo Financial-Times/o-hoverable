@@ -2,7 +2,16 @@
 
 Helper to activate hover states only on devices that support them, preventing unintended hover effects from happening on touch devices.
 
-## Quick start
+- [Usage](#usage)
+	- [Why o-hoverable](#why-o-hoverable)
+	- [Sass](#sass)
+	- [JavaScript](#javascript)
+	- [Configuring the class](#configuring-the-class)
+	- [Disabling o-hoverable](#disabling-o-hoverable)
+- [Contact](#contact)
+- [Licence](#licence)
+
+## Usage
 
 Add this class to the document to enable hover effects:
 
@@ -11,7 +20,7 @@ Add this class to the document to enable hover effects:
 <html class="o-hoverable-on">
 ```
 
-## Why o-hoverable?
+### Why o-hoverable?
 
 It's common for interactive elements on web pages to have hover effects, either via JavaScript `mouse*` events, or via CSS `:hover` pseudoclasses.  However, while some users will be interacting with your web page using a mouse, others may be using a touch screen.  Since touch screens typically don't have a 'hover' capability, hover effects are usually undesirable.
 
@@ -19,9 +28,7 @@ In fact, some touch devices may have 'emulated hover', where the first touch act
 
 This module provides for all Origami hover effects to be turned on and off, and provides a JavaScript utility to do so intelligently based on the input devices available to the user.
 
-## Advanced documentation
-
-### Styling
+### Sass
 
 Component developers *must* prefix `:hover` states with `$o-hoverable-if-hover-enabled`, allowing hover effects to be configured by this module:
 
@@ -36,7 +43,7 @@ Component developers *must* prefix `:hover` states with `$o-hoverable-if-hover-e
 
 Compiles to:
 
-```scss
+```css
 .o-hoverable-on .o-mymodule-button:hover {
 	background: black;
 }
@@ -70,7 +77,7 @@ And calling `setClassName` on the JavaScript module:
 require('o-hoverable').setClassName('do-that-hover-thang');
 ```
 
-## Disabling o-hoverable
+### Disabling o-hoverable
 
 Restore hover effects on all devices (even touch devices):
 
@@ -92,10 +99,14 @@ Compiles to:
 }
 ```
 
+---
+
+## Contact
+
+If you have any questions or comments about this component, or need help using it, please either [raise an issue](https://github.com/Financial-Times/o-hoverable/issues), visit [#ft-origami](https://financialtimes.slack.com/messages/ft-origami/) or email [Origami Support](mailto:origami-support@ft.com).
+
 ----
 
-## License
+## Licence
 
-Copyright (c) 2016 Financial Times Ltd. All rights reserved.
-
-This software is published under the [MIT licence](http://opensource.org/licenses/MIT).
+This software is published by the Financial Times under the [MIT licence](http://opensource.org/licenses/MIT).

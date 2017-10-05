@@ -53,7 +53,7 @@ function Hoverable() {
 			contactlessMoves++;
 		}
 
-		if ('mousemove' === event.type.toLowerCase()) {
+		if (event.type.toLowerCase() === 'mousemove') {
 
 			// COMPLEX:GC:20130322: Webkit can fire an erroneous mousemove under some conditions, so
 			// keep a track of the clientX and clientY values, and reject events where these values don't change.

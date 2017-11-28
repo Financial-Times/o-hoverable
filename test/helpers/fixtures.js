@@ -32,4 +32,4 @@ function htmlCode () {
 export {
 	htmlCode,
 	reset
- };
+};

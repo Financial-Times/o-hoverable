@@ -2,7 +2,7 @@
 import proclaim from 'proclaim';
 import sinon from 'sinon/pkg/sinon';
 
-const Hoverable = require('./../main.js');
+import Hoverable from './../main.js';
 
 describe("o-hoverable init", () => {
 

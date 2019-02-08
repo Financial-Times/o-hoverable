@@ -1,7 +1,7 @@
 /*global describe, afterEach, it*/
 
 import proclaim from 'proclaim';
-const Hoverable = require('./../main.js');
+import Hoverable from './../main.js';
 
 describe('o-hoverable', function() {
 

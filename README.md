@@ -1,5 +1,7 @@
 # Origami hover effects [![Build Status](https://circleci.com/gh/Financial-Times/o-hoverable.png?style=shield&circle-token=b0af656f0c61d4711aaf95feff0fda15e76cf32e)](https://circleci.com/gh/Financial-Times/o-hoverable) [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](#licence)
 
+_Deprecated. We recommend the [hover](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/hover) or [any-hover](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/any-hover) media query instead._
+
 Helper to activate hover states only on devices that support them, preventing unintended hover effects from happening on touch devices.
 
 - [Usage](#usage)

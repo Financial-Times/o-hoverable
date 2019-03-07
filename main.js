@@ -111,4 +111,5 @@ Hoverable.init = function() {
 
 document.addEventListener('o.DOMContentLoaded', () => Hoverable.init() );
 
-module.exports = Hoverable;
+export default { Hoverable };
+export { Hoverable };
